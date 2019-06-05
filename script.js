@@ -290,10 +290,6 @@ ctx.fillStyle = "white";
 ctx.fillRect(0, 0, SIDE_LEN, SIDE_LEN);
 
 function runTick() {
-	ctx.fillStyle = "white";
-	ctx.fillRect(0, 0, SIDE_LEN, SIDE_LEN);
-	ctx.drawImage(img_background, 0, 0, 800, 800);
-
 	playerObj.tick();
 	
 	for (var tObj of oList) {
@@ -307,6 +303,11 @@ function runTick() {
 }
 
 function runDraw() {
+	//ctx.fillStyle = "white";
+	//ctx.fillRect(0, 0, SIDE_LEN, SIDE_LEN);
+	ctx.clearRect(0, 0, SIDE_LEN, SIDE_LEN);
+	ctx.drawImage(img_background, 0, 0, 800, 800);
+
 	for (var tObj of oList) {
 		tObj.draw();
 	}
