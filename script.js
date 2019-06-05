@@ -281,6 +281,7 @@ function restart() {
 	rInterval1 = window.setInterval(runTick, 1/60 * 1000);
 	rInterval2 = window.setInterval(generateAdversary, (SIDE_LEN / (FALL_SPEED) / 3) * (1/60 * 1000));
 	generateAdversary();
+	window.requestAnimationFrame(runDraw);
 }
 
 ctx.fillStyle = "white";
@@ -301,12 +302,16 @@ function runTick() {
 		gameOver();
 		return;
 	}
+}
 
+function runDraw() {
 	for (var tObj of oList) {
 		tObj.draw();
 	}
 	playerObj.draw();
 	uiObj.draw();
+
+	if (!flag_gameOver) window.requestAnimationFrame(runDraw);
 }
 
 function generateAdversary() {
