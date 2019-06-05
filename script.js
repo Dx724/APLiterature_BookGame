@@ -123,7 +123,7 @@ var quotes = [
 				["...I hid myself between two leaves of sorrel, and there discharged the necessities of nature.", 5],
 				["... a wife should be always a reasonable and agreeable companion, because she cannot always be young.", 5],
 				["... philosophers are in the right when they tell us that nothing is great or little otherwise than by comparison.", 5],
-				["that whoever could make two ears of corn... would deserve better of mankind… than the whole race of politicians put together.", 5],
+				["that whoever could make two ears of corn... would deserve better of mankind... than the whole race of politicians put together.", 5],
 				["'You're a bitter man'... 'That's because I've lived'", 6],
 				["Let us cultivate our garden.", 6],
 				["If this is the best of possible worlds, what then are the others?", 6],
@@ -289,7 +289,7 @@ function restart() {
 	tCount = 0;
 	rInterval1 = window.setInterval(runTick, 1/60 * 1000);
 	//rInterval2 = window.setInterval(generateAdversary, (SIDE_LEN / (FALL_SPEED) / 3) * (1/60 * 1000));
-	generateAdversary();
+	//generateAdversary();
 	rAnimFrame = window.requestAnimationFrame(runDraw);
 }
 
@@ -298,6 +298,7 @@ ctx.fillRect(0, 0, SIDE_LEN, SIDE_LEN);
 
 function runTick() {
 	if (tCount % Math.ceil((SIDE_LEN / FALL_SPEED) / 3) == 0) {
+		console.log(tCount + " " + tCount % Math.ceil((SIDE_LEN / FALL_SPEED) / 3));
 		generateAdversary();
 	}
 	tCount++;
