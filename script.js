@@ -6,6 +6,14 @@ const FALL_SPEED = 2;
 
 var mousePos = [0, 0];
 
+var img_background = new Image();
+img_background.src = "background.png";
+var img_caroline = new Image();
+img_caroline.src = "CarolineDrawing.png";
+var img_hartnett = new Image();
+img_hartnett.src = "HartnettDrawing.png";
+
+
 function updateMRange(iPos, bObj) {
 	var tPos = iPos + (bObj.speed * bObj.dir);
 	if (tPos > bObj.max) {
@@ -19,16 +27,19 @@ function updateMRange(iPos, bObj) {
 	return tPos;
 }
 
-var playerObj = {
+var playerObj = { //Ticks before others, drawn after others
 	xPos: 0,
 	yPos: 650,
 	size: 25,
 	vBounce: {
 		min: 650,
-		max: 675,
-		speed: 0.05,
+		max: 660,
+		speed: 0.20,
 		dir: 1
 	},
+	image: img_caroline, //Note: image size hard-coded into "draw" function
+	width: 709 / 7,
+	height: 1518 / 7,
 	tick: function() {
 		this.move();
 	},
@@ -37,19 +48,21 @@ var playerObj = {
 		this.yPos = updateMRange(this.yPos, this.vBounce);
 	},
 	draw: function() {
-		ctx.fillStyle = "black";
-		ctx.fillRect(this.xPos - this.size, this.yPos - this.size, this.size, this.size);
+		//ctx.fillStyle = "black";
+		//ctx.fillRect(this.xPos - this.size, this.yPos - this.size, this.size, this.size);
+		ctx.drawImage(this.image, this.xPos - this.width / 2, this.yPos - this.height / 2, this.width, this.height);
 	}
 };
 
 var scoreObj = {
-	yPos: 600,
+	yPos: 650 - 150,
 	sector: 0,
 	tick: function() {
 		this.sector = Math.floor(playerObj.xPos / (SIDE_LEN / 3));
 		if (this.sector == 3) this.sector = 2;
 	},
 	draw: function() {
+		return;
 		ctx.fillStyle = "red";
 		ctx.fillRect(0, this.yPos, SIDE_LEN, 3);
 	}
@@ -131,6 +144,10 @@ function ChallengeRow() {
 
 		ctx.fillStyle = "black";
 		ctx.fillText("\"" + this.quote[0] + "\"", SIDE_LEN / 2, this.yPos - this.thickness / 2, SIDE_LEN);
+
+		ctx.drawImage(img_hartnett, SIDE_LEN / 2 - ((667 / 10) / 2), this.yPos - this.thickness - 1400 / 10, 667 / 10, 1400 / 10);
+		//ctx.drawImage(img_hartnett, SIDE_LEN / 8, this.yPos, 667 / 10, 1400 / 10);
+		//ctx.drawImage(img_hartnett, SIDE_LEN - SIDE_LEN / 8, this.yPos, 667 / 10, 1400 / 10);
 	};
 	oList.push(this);
 }
@@ -157,11 +174,11 @@ function gameOver() {
 	ctx.fillStyle = "white";
 	ctx.fillText("Game Over", SIDE_LEN / 2, SIDE_LEN / 2 - SIDE_LEN / 24, SIDE_LEN);
 	ctx.font = "35px bold sans-serif";
-	ctx.fillText("Click to start again!", SIDE_LEN / 2, SIDE_LEN / 2 + SIDE_LEN / 24, SIDE_LEN);
+	ctx.fillText("Score: " + uiObj.score, SIDE_LEN / 2, SIDE_LEN / 2 + SIDE_LEN / 24, SIDE_LEN);
 }
 
 function restart() {
-	oList = [playerObj, scoreObj];
+	oList = [scoreObj];
 	flag_gameOver = false;
 	scoreObj.score = 0;
 	rInterval1 = window.setInterval(runTick, 1/30 * 1000);
@@ -175,6 +192,9 @@ ctx.fillRect(0, 0, SIDE_LEN, SIDE_LEN);
 function runTick() {
 	ctx.fillStyle = "white";
 	ctx.fillRect(0, 0, SIDE_LEN, SIDE_LEN);
+	ctx.drawImage(img_background, 0, 0, 800, 800);
+
+	playerObj.tick();
 	
 	for (var tObj of oList) {
 		tObj.tick();
@@ -188,6 +208,7 @@ function runTick() {
 	for (var tObj of oList) {
 		tObj.draw();
 	}
+	playerObj.draw();
 	uiObj.draw();
 }
 
