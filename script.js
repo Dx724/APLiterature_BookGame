@@ -270,7 +270,7 @@ function gameOver() {
 function restart() {
 	oList = [scoreObj];
 	flag_gameOver = false;
-	scoreObj.score = 0;
+	uiObj.score = 0;
 	rInterval1 = window.setInterval(runTick, 1/30 * 1000);
 	rInterval2 = window.setInterval(generateAdversary, (SIDE_LEN / (FALL_SPEED) / 3) * (1/30 * 1000));
 	generateAdversary();
