@@ -80,6 +80,7 @@ var uiObj = { //Drawn after oList objects
 	draw: function() {
 		ctx.fillStyle = "black";
 		ctx.fillRect(this.xPos, this.yPos, this.width, this.height);
+		ctx.font = "25px 'Open Sans', sans-serif"
 		ctx.fillStyle = "white";
 		ctx.fillText("Score: " + this.score, this.xPos + this.width / 2, this.yPos + this.height / 2, this.width);
 	}
@@ -227,7 +228,7 @@ function ChallengeRow() {
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 		ctx.fillStyle = "white";
-		ctx.font = "bold 15px sans-serif";
+		ctx.font = "bold 15px 'Open Sans', sans-serif";
 		for (var i = 0; i < this.blocks.length; i++) {
 			ctx.fillText(this.blocks[i], SIDE_LEN * (1/6 + 1/3 * i), this.yPos + this.thickness / 2, SIDE_LEN / 3);
 		}
@@ -260,10 +261,10 @@ function gameOver() {
 	window.clearInterval(rInterval2);
 	ctx.fillStyle = "black";
 	ctx.fillRect(SIDE_LEN / 6, SIDE_LEN / 6, SIDE_LEN / 6 * 4, SIDE_LEN / 6 * 4);
-	ctx.font = "55px bold sans-serif";
+	ctx.font = "55px'Open Sans', sans-serif";
 	ctx.fillStyle = "white";
 	ctx.fillText("Game Over", SIDE_LEN / 2, SIDE_LEN / 2 - SIDE_LEN / 24, SIDE_LEN);
-	ctx.font = "35px bold sans-serif";
+	ctx.font = "35px'Open Sans', sans-serif";
 	ctx.fillText("Score: " + uiObj.score, SIDE_LEN / 2, SIDE_LEN / 2 + SIDE_LEN / 24, SIDE_LEN);
 }
 
