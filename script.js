@@ -13,6 +13,8 @@ img_caroline.src = "CarolineDrawing.png";
 var img_hartnett = new Image();
 img_hartnett.src = "HartnettDrawing.png";
 
+var actualAnswer = "None";
+
 
 function updateMRange(iPos, bObj) {
 	var tPos = iPos + (bObj.speed * bObj.dir);
@@ -210,6 +212,7 @@ function ChallengeRow() {
 				uiObj.score += uiObj.score_row;
 			}
 			else {
+				actualAnswer = this.blocks[this.rightAnswer]; //this.rightTitle
 				flag_gameOver = true;
 			}
 			oList.splice(oList.indexOf(this), 1);
@@ -262,11 +265,13 @@ function gameOver() {
 	window.clearInterval(rInterval2);
 	ctx.fillStyle = "black";
 	ctx.fillRect(SIDE_LEN / 6, SIDE_LEN / 6, SIDE_LEN / 6 * 4, SIDE_LEN / 6 * 4);
-	ctx.font = "55px'Open Sans', sans-serif";
+	ctx.font = "55px 'Open Sans', sans-serif";
 	ctx.fillStyle = "white";
-	ctx.fillText("Game Over", SIDE_LEN / 2, SIDE_LEN / 2 - SIDE_LEN / 24, SIDE_LEN);
-	ctx.font = "35px'Open Sans', sans-serif";
-	ctx.fillText("Score: " + uiObj.score, SIDE_LEN / 2, SIDE_LEN / 2 + SIDE_LEN / 24, SIDE_LEN);
+	ctx.fillText("Correct Answer:", SIDE_LEN / 2, SIDE_LEN / 2 - SIDE_LEN / 24 * 3, SIDE_LEN / 6 * 4);
+	ctx.font = "45px 'Open Sans', sans-serif";
+	ctx.fillText(actualAnswer, SIDE_LEN / 2, SIDE_LEN / 2, SIDE_LEN / 6 * 4);
+	ctx.font = "35px 'Open Sans', sans-serif";
+	ctx.fillText("Score: " + uiObj.score, SIDE_LEN / 2, SIDE_LEN / 2 + SIDE_LEN / 24 * 3, SIDE_LEN);
 }
 
 function restart() {
