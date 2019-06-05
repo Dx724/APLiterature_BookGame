@@ -297,7 +297,7 @@ ctx.fillStyle = "white";
 ctx.fillRect(0, 0, SIDE_LEN, SIDE_LEN);
 
 function runTick() {
-	if (tCount % ((SIDE_LEN / FALL_SPEED) / 3) < 1) {
+	if (tCount % Math.ceil((SIDE_LEN / FALL_SPEED) / 3) == 0) {
 		generateAdversary();
 	}
 	tCount++;
