@@ -257,12 +257,14 @@ canvas.addEventListener("click", function(evt) {
 
 rInterval1 = 0;
 rInterval2 = 0;
+rAnimFrame = 0;
 
 var flag_gameOver = false;
 
 function gameOver() {
 	window.clearInterval(rInterval1);
 	window.clearInterval(rInterval2);
+	window.cancelAnimationFrame(rAnimFrame);
 	ctx.fillStyle = "black";
 	ctx.fillRect(SIDE_LEN / 6, SIDE_LEN / 6, SIDE_LEN / 6 * 4, SIDE_LEN / 6 * 4);
 	ctx.font = "55px 'Open Sans', sans-serif";
@@ -281,7 +283,7 @@ function restart() {
 	rInterval1 = window.setInterval(runTick, 1/60 * 1000);
 	rInterval2 = window.setInterval(generateAdversary, (SIDE_LEN / (FALL_SPEED) / 3) * (1/60 * 1000));
 	generateAdversary();
-	window.requestAnimationFrame(runDraw);
+	rAnimFrame = window.requestAnimationFrame(runDraw);
 }
 
 ctx.fillStyle = "white";
@@ -311,7 +313,7 @@ function runDraw() {
 	playerObj.draw();
 	uiObj.draw();
 
-	if (!flag_gameOver) window.requestAnimationFrame(runDraw);
+	if (!flag_gameOver) rAnimFrame = window.requestAnimationFrame(runDraw);
 }
 
 function generateAdversary() {
