@@ -251,6 +251,10 @@ canvas.addEventListener("mousemove", function(evt) {
 	mousePos = [evt.offsetX / canvas.offsetWidth * SIDE_LEN, evt.offsetY / canvas.offsetWidth * SIDE_LEN];
 });
 
+canvas.addEventListener("touchmove", function(evt) {
+	mousePos = [(evt.touches[0].pageX - evt.touches[0].target.offsetLeft) / canvas.offsetWidth * SIDE_LEN, (evt.touches[0].pageY - evt.touches[0].target.offsetTop) / canvas.offsetWidth * SIDE_LEN];
+});
+
 canvas.addEventListener("click", function(evt) {
 	if (flag_gameOver) restart();
 });
