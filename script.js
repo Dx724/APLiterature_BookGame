@@ -216,13 +216,14 @@ function ChallengeRow() {
 		}
 	};
 	this.draw = function() {
-		ctx.fillStyle = "black";
+		ctx.fillStyle = "red";
 		ctx.fillRect(0, this.yPos, SIDE_LEN / 3, this.thickness);
+		ctx.fillStyle = "blue";
 		ctx.fillRect(SIDE_LEN / 3 * 2, this.yPos, SIDE_LEN / 3, this.thickness);
-		ctx.fillStyle = "#565656";
+		ctx.fillStyle = "green";//ctx.fillStyle = "#565656";
 		ctx.fillRect(SIDE_LEN / 3, this.yPos, SIDE_LEN / 3, this.thickness);
 
-		ctx.fillStyle = "#cecece";
+		ctx.fillStyle = "#dedede";
 		ctx.fillRect(0, this.yPos - this.thickness, SIDE_LEN, this.thickness);
 
 		ctx.textAlign = "center";
