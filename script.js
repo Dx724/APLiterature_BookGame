@@ -88,7 +88,7 @@ var uiObj = { //Drawn after oList objects
 
 var oList = []; //Set this in restart();
 
-var books = ["Jane Eyre", "Crime and Punishment", "Oedipus Rex", "Beowulf", "Hamlet", "Gulliver's Travels", "Candide", "Frankenstein", "Moby Dick", "The Odyssey", "Hedda Gabler", "The Sun Also Rises", "The Stranger", "1984", "White Noise", "Things Fall Apart", "The Things They Carried", "One Flew over the Cuckoo's Nest"];
+var books = ["Jane Eyre", "Crime and Punishment", "Oedipus Rex", "Beowulf", "Hamlet", "Gulliver's Travels", "Candide", "Frankenstein", "Moby Dick", "The Odyssey", "Hedda Gabler", "The Sun Also Rises", "The Stranger", "1984", "White Noise", "Things Fall Apart", "The Things They Carried", "One Flew Over the Cuckoo's Nest"];
 
 var quotes = [
 				//["Mastercard", 14]
