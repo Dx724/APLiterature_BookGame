@@ -2,7 +2,7 @@ var canvas = document.getElementById("mainCanvas");
 var ctx = canvas.getContext("2d");
 
 const SIDE_LEN = 800;
-const FALL_SPEED = 2;
+const FALL_SPEED = 1;
 
 var mousePos = [0, 0];
 
@@ -36,7 +36,7 @@ var playerObj = { //Ticks before others, drawn after others
 	vBounce: {
 		min: 650,
 		max: 660,
-		speed: 0.20,
+		speed: 0.10,
 		dir: 1
 	},
 	image: img_caroline, //Note: image size hard-coded into "draw" function
@@ -278,8 +278,8 @@ function restart() {
 	oList = [scoreObj];
 	flag_gameOver = false;
 	uiObj.score = 0;
-	rInterval1 = window.setInterval(runTick, 1/30 * 1000);
-	rInterval2 = window.setInterval(generateAdversary, (SIDE_LEN / (FALL_SPEED) / 3) * (1/30 * 1000));
+	rInterval1 = window.setInterval(runTick, 1/60 * 1000);
+	rInterval2 = window.setInterval(generateAdversary, (SIDE_LEN / (FALL_SPEED) / 3) * (1/60 * 1000));
 	generateAdversary();
 }
 
